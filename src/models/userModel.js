@@ -1,4 +1,4 @@
-const mongoose = require('../utils/mongoose.js');
+const mongoose = require('../utils/mongoose');
 const { Schema } = mongoose;
 
 const userSchema = new Schema(

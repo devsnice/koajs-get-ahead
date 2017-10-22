@@ -8,25 +8,57 @@ apiRouter.get('/', (ctx, next) => {
 });
 
 apiRouter.get('/users', async (ctx, next) => {
-  const users = await userController.getAll();
+  const query = {};
+  const users = await userController.get(query);
 
   ctx.body = users;
 });
 
-apiRouter.post('/users', (ctx, next) => {
-  ctx.body = "Add a new user";
+apiRouter.get('/users/:id', async (ctx, next) => {
+  const {id} = ctx.params;
+
+  const user = await userController.getById({id});
+
+  ctx.body = user;
 });
 
-apiRouter.get('/users/:id', (ctx, next) => {
-  ctx.body = "Get an user by id";
+apiRouter.post('/users', async (ctx, next) => {
+  const {data} = ctx.request.body;
+  const user = await userController.add(data);
+  
+  ctx.body = user;
 });
 
-apiRouter.delete('/users/:id', (ctx, next) => {
-  ctx.body = "Delete an user by id";
+apiRouter.delete('/users', async (ctx, next) => {
+  const {query} = ctx.request.body;
+  const user = await userController.delete(query);
+  
+  ctx.body = user;
 });
 
-apiRouter.put('/users/:id', (ctx, next) => {
-  ctx.body = "Change an user by id";
+apiRouter.delete('/users/:id', async (ctx, next) => {
+  const {id} = ctx.params;
+
+  const user = await userController.delete({id});
+  
+  ctx.body = user;
+});
+
+apiRouter.put('/users/', async (ctx, next) => {
+  const {query, data}  = ctx.request.body;
+  const user = await userController.update(query, data);
+  
+  ctx.body = user;
+});
+
+
+apiRouter.put('/users/:id', async (ctx, next) => {
+  const {id} = ctx.params;
+  const {data} = ctx.request.body;
+
+  const user = await userController.update({id}, data);
+  
+  ctx.body = user;
 });
 
 
