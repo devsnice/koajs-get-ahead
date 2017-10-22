@@ -5,7 +5,11 @@
   "author": "Borisov Semen <devsnice@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "config": "^1.27.0",
     "koa": "^2.3.0",
-    "koa-router": "^7.2.1"
+    "koa-body": "^2.5.0",
+    "koa-logger": "^3.1.0",
+    "koa-router": "^7.2.1",
+    "mongoose": "^4.12.4"
   }
 }
