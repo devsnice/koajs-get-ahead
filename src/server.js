@@ -1,15 +1,6 @@
-const Koa = require('koa');
-const koaBody = require('koa-body');
-const koaLogger = require('koa-logger');
+const application = require('./application');
+const config = require('config');
 
-const router = require('./router/router.js');
+const apiConfig = config.get('api');
 
-const app = new Koa();
-
-app.use(koaLogger());
-app.use(koaBody());
-app.use(router.routes());
-
-app.listen(3030);
-
-module.exports = app;
+application.listen(apiConfig.port);

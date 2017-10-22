@@ -4,7 +4,7 @@ const userController = require('../controllers/userController');
 const apiRouter = new Router();
 
 apiRouter.get('/', (ctx, next) => {
-  ctx.body = "It's a route for API of application";
+  ctx.body = "It is a route for API of application";
 });
 
 apiRouter.get('/users', async (ctx, next) => {

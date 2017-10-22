@@ -1,12 +1,35 @@
-// add user, edit user, delete user, get user
-// add users, get users, delete users, edit users
-
 const assert = require('assert');
+const request = require('request-promise');
+const config = require('config');
 
-describe('Array', function() {
-  describe('#indexOf()', function() {
-    it('should return -1 when the value is not present', function() {
-      assert.equal(-1, [1,2,3].indexOf(4));
+const application = require('../application');
+const apiConfig = config.get('api');
+
+const STAND_URL = `http://localhost:${apiConfig.port}`;
+let server = null;
+
+describe('Test the server', () => {
+    before(() => {
+        server = application.listen(apiConfig.port, () => {
+            console.log(`Server started on ${apiConfig.port} port`);
+        });
     });
-  });
-});
+
+    after(() => {
+        server.close(() => {
+            console.log(`Server closed on ${apiConfig.port} port`);
+        });
+    });
+
+    it('Server should started', async () => {
+        const result = await request.get(STAND_URL);
+
+        assert.equal(result, "It a root of  application");
+    })
+
+    describe('Test API', () => {
+        describe('User', () => {
+          // test cases
+        });
+    });
+})
