@@ -11,3 +11,5 @@ app.use(koaBody());
 app.use(router.routes());
 
 app.listen(3030);
+
+module.exports = app;

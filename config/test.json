@@ -1,0 +1,7 @@
+{
+    "api": {
+      "dbConfig": {
+        "url": "mongodb://localhost/testapp"
+      }
+    }
+  }

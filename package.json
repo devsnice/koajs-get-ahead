@@ -4,12 +4,19 @@
   "main": "index.js",
   "author": "Borisov Semen <devsnice@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "dev-start": "nodemon src/server.js",
+    "test": "cross-env NODE_ENV=test mocha src/tests/tests.js"
+  },
   "dependencies": {
+    "assets": "^3.0.0",
     "config": "^1.27.0",
+    "cross-env": "^5.1.0",
     "koa": "^2.3.0",
     "koa-body": "^2.5.0",
     "koa-logger": "^3.1.0",
     "koa-router": "^7.2.1",
+    "mocha": "^4.0.1",
     "mongoose": "^4.12.4"
   }
 }
