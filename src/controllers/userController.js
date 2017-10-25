@@ -2,60 +2,37 @@ const UserModel = require('../models/userModel');
 
 const userController = {
   get: async function(query = {}) {
-    const result = await UserModel.find(query)
-      .then(results => {
-        return results;
-      })
-      .catch(error => {
-        throw error;
-      });
+    const users = await UserModel.find(query);
 
-      return result;
+    return users.map(user => user.toObject());
   },
   getById: async function(id) {
-    const result = await UserModel.findById(id)
-      .then(results => {
-        return results;
-      })
-      .catch(error => {
-        throw error;
-      });
-
-      return result;
+    const user = await UserModel.findById(id);
+    
+    return user.toObject();
   },
-  add: async function(query = {}) {
-    const result = await UserModel.create(query)
-      .then(results => {
-        return results;
-      })
-      .catch(error => {
-        throw error;
-      });
+  add: async function(data = {}) {
+    const addedResult = await UserModel.create(data);
+     
+    if(Array.isArray(addedResult)) {
+      return addedResult.map(userResult => userResult.toObject());
+    }
 
-    return result;
+    return addedResult.toObject();
   },
   delete: async function(query = {}) {
-    const result = await UserModel.remove(query)
-      .then(results => {
-        return results;
-      })
-      .catch(error => {
-        throw error;
-      });
-
-    return result;
+    const deleteResult = await UserModel.remove(query);
+    
+    return deleteResult;
   },
+  // TODO: make updating a model in the correct way
+  // find -> save
   update: async function(query = {}, updateFields = {}) {
+    const users = await this.get(query);
 
-    const result = await UserModel.update(query, updateFields)
-      .then(results => {
-        return results;
-      })
-      .catch(error => {
-        throw error;
-      });
-
-    return result;
+    return users.map(user => {
+      return user.toObject();
+    });
   }
 };
 

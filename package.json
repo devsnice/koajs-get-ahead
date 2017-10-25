@@ -14,12 +14,16 @@
     "koa-body": "^2.5.0",
     "koa-logger": "^3.1.0",
     "koa-router": "^7.2.1",
-    "mongoose": "^4.12.4"
+    "mongoose": "^4.12.4",
+    "request": "^2.83.0"
   },
   "devDependencies": {
     "assets": "^3.0.0",
     "cross-env": "^5.1.0",
+    "faker": "^4.1.0",
+    "koa-bodyparser": "^4.2.0",
     "mocha": "^4.0.1",
+    "mongoose-beautiful-unique-validation": "^7.0.0",
     "request-promise": "^4.2.2"
   }
 }
