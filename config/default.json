@@ -1,8 +1,8 @@
 {
-    "api": {
-      "port": 8080,
-      "dbConfig": {
-        "url": "mongodb://localhost/app"
-      }
+  "api": {
+    "port": 8080,
+    "dbConfig": {
+      "url": "mongodb://localhost/app"
     }
   }
+}

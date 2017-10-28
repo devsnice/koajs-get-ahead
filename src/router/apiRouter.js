@@ -8,7 +8,8 @@ apiRouter.get("/", ctx => {
 });
 
 apiRouter.get("/users", async ctx => {
-  const query = {};
+  const { query } = ctx.request.body;
+
   const users = await userController.get(query);
 
   ctx.body = users;
@@ -17,7 +18,7 @@ apiRouter.get("/users", async ctx => {
 apiRouter.get("/users/:id", async ctx => {
   const { id } = ctx.params;
 
-  const user = await userController.getById({ id });
+  const user = await userController.getById(id);
 
   ctx.body = user;
 });

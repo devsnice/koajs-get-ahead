@@ -10,7 +10,7 @@
     "precommit": "lint-staged"
   },
   "lint-staged": {
-    "*.{js,json,css}": ["prettier --write", "git add"]
+    "*.{js,json}": ["prettier --write", "git add"]
   },
   "dependencies": {
     "config": "^1.27.0",
