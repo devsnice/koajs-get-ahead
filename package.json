@@ -6,7 +6,11 @@
   "license": "MIT",
   "scripts": {
     "dev-start": "nodemon src/server.js",
-    "test": "cross-env NODE_ENV=test mocha src/tests/tests.js"
+    "test": "cross-env NODE_ENV=test mocha src/tests/tests.js",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,json,css}": ["prettier --write", "git add"]
   },
   "dependencies": {
     "config": "^1.27.0",
@@ -15,13 +19,16 @@
     "koa-logger": "^3.1.0",
     "koa-router": "^7.2.1",
     "mongoose": "^4.12.4",
+    "prettier": "^1.7.4",
     "request": "^2.83.0"
   },
   "devDependencies": {
     "assets": "^3.0.0",
     "cross-env": "^5.1.0",
     "faker": "^4.1.0",
+    "husky": "^0.14.3",
     "koa-bodyparser": "^4.2.0",
+    "lint-staged": "^4.3.0",
     "mocha": "^4.0.1",
     "mongoose-beautiful-unique-validation": "^7.0.0",
     "request-promise": "^4.2.2"

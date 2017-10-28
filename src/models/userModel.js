@@ -1,7 +1,7 @@
-const mongoose = require('../utils/mongoose');
+const mongoose = require("../utils/mongoose");
 const { Schema } = mongoose;
 
-const beautifyUnique = require('mongoose-beautiful-unique-validation');
+const beautifyUnique = require("mongoose-beautiful-unique-validation");
 
 const userSchema = new Schema(
   {
@@ -17,7 +17,7 @@ const userSchema = new Schema(
       type: String,
       required: true,
       unique: true,
-      unique: 'Two users cannot share the same email ({VALUE})'
+      unique: "Two users cannot share the same email ({VALUE})"
     },
     password: {
       type: String,
@@ -37,6 +37,6 @@ const userSchema = new Schema(
 
 userSchema.plugin(beautifyUnique);
 
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model("User", userSchema);
 
 module.exports = User;

@@ -1,4 +1,4 @@
-const UserModel = require('../models/userModel');
+const UserModel = require("../models/userModel");
 
 const userController = {
   get: async function(query = {}) {
@@ -8,13 +8,13 @@ const userController = {
   },
   getById: async function(id) {
     const user = await UserModel.findById(id);
-    
+
     return user.toObject();
   },
   add: async function(data = {}) {
     const addedResult = await UserModel.create(data);
-     
-    if(Array.isArray(addedResult)) {
+
+    if (Array.isArray(addedResult)) {
       return addedResult.map(userResult => userResult.toObject());
     }
 
@@ -22,7 +22,7 @@ const userController = {
   },
   delete: async function(query = {}) {
     const deleteResult = await UserModel.remove(query);
-    
+
     return deleteResult;
   },
   // TODO: make updating a model in the correct way

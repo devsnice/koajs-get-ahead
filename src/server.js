@@ -1,6 +1,6 @@
-const application = require('./application');
-const config = require('config');
+const application = require("./application");
+const config = require("config");
 
-const apiConfig = config.get('api');
+const apiConfig = config.get("api");
 
 application.listen(apiConfig.port);

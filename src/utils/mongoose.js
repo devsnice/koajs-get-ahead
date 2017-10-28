@@ -1,7 +1,7 @@
-const mongoose = require('mongoose');
-const config = require('config');
+const mongoose = require("mongoose");
+const config = require("config");
 
-const apiConfig = config.get('api');
+const apiConfig = config.get("api");
 
 mongoose.connect(apiConfig.dbConfig.url, { useMongoClient: true });
 mongoose.Promise = global.Promise;

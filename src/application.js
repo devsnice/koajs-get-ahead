@@ -1,9 +1,9 @@
-const Koa = require('koa');
-const koaBodyparser = require('koa-bodyparser');
-const koaLogger = require('koa-logger');
+const Koa = require("koa");
+const koaBodyparser = require("koa-bodyparser");
+const koaLogger = require("koa-logger");
 
-const router = require('./router/router');
-const errorsMiddleware = require('./middlewares/errorsMiddleware')
+const router = require("./router/router");
+const errorsMiddleware = require("./middlewares/errorsMiddleware");
 
 const app = new Koa();
 
