@@ -2,10 +2,15 @@ const errorsMiddleware = async (ctx, next) => {
   try {
     await next();
   } catch (err) {
-    let status = err.statusCode || err.status || 500;
+    let status;
 
-    if (err.name === "ValidationError") {
-      status = 400;
+    switch (err.name) {
+      case "ValidationError":
+        status = 400;
+      case "NotFoundError":
+        status = 404;
+      default:
+        status = err.statusCode || err.status || 500;
     }
 
     ctx.status = status;

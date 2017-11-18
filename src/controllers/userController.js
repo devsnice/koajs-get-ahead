@@ -21,9 +21,13 @@ const userController = {
     return addedResult.toObject();
   },
   delete: async function(query = {}) {
-    const deleteResult = await UserModel.remove(query);
+    const findedUsers = this.get(query);
 
-    return deleteResult;
+    if (!findedUsers.length) {
+      throw new Error("NotFoundError");
+    }
+
+    return findedUsers.map(user => user.remove());
   },
   // TODO: make updating a model in the correct way
   // find -> save

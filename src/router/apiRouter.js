@@ -33,7 +33,7 @@ apiRouter.post("/users", async ctx => {
 
 apiRouter.delete("/users", async ctx => {
   const { query } = ctx.request.body;
-  const user = await userController.delete(query);
+  const users = await userController.delete(query);
 
   ctx.body = user;
 });

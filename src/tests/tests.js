@@ -107,6 +107,7 @@ describe("Test the server", () => {
         });
       });
 
+      // It should return 404 error, if there isn't such user
       describe("GET /api/users", () => {
         it("It should empty set of users from db, cause there isn't users", async () => {
           const response = await requestService.get(modelName);
@@ -170,6 +171,48 @@ describe("Test the server", () => {
           const responseUsers = response.body.map(user => getResultUser(user));
 
           assert.deepEqual(filteredUsers, responseUsers);
+        });
+      });
+
+      // Сheck status - 404, 200
+      // Check amount users in db
+      describe("DELETE /api/users", () => {
+        it("It should delete user with id from db", async () => {
+          const testUser = getFakeUser();
+
+          const createdUser = await requestService.post(modelName, {
+            data: testUser
+          });
+
+          const response = await requestService.delete(
+            modelName,
+            {},
+            {
+              uriParam: createdUser.body["_id"]
+            }
+          );
+
+          const numberOfUsersShouldRemoved = 1;
+
+          assert.equal(numberOfUsersShouldRemoved, response.body.n);
+        });
+
+        it("It should delete user with id from db", async () => {
+          const testUsers = [getFakeUser(), getFakeUser(), getFakeUser()];
+
+          const createdUsers = await requestService.post(modelName, {
+            data: testUsers
+          });
+
+          const response = await requestService.delete(modelName, {
+            email: testUsers.email
+          });
+
+          const numberOfUsersShouldRemoved = 1;
+
+          console.log("Deleted items:", response.body);
+
+          assert.equal(numberOfUsersShouldRemoved, response.body.n);
         });
       });
     });
