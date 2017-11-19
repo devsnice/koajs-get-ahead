@@ -1,15 +1,28 @@
 const Koa = require("koa");
-const koaBodyparser = require("koa-bodyparser");
-const koaLogger = require("koa-logger");
+const bodyparser = require("koa-bodyparser");
+const logger = require("koa-logger");
+
+const mongoose = require("./utils/mongoose");
 
 const router = require("./router/router");
-const errorsMiddleware = require("./middlewares/errorsMiddleware");
+const errors = require("./middlewares/errorsMiddleware");
+const session = require("./middlewares/sessionMiddleware");
+const passport = require("./middlewares/passportMiddleware");
 
 const app = new Koa();
 
-app.use(koaLogger());
-app.use(errorsMiddleware);
-app.use(koaBodyparser());
+app.keys = ["secret"];
+app.use(logger());
+app.use(errors);
+app.use(session());
+app.use(bodyparser());
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(async (ctx, next) => {
+  console.log("user is auth, user", ctx.isAuthenticated(), ctx.state.user);
+
+  next();
+});
 app.use(router.routes());
 
 module.exports = app;
